@@ -11,21 +11,93 @@
 </head>
 
 <body>
-<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-    <h1>Starting Strength Weight Calculator</h1>
-    <div class = "bumper">
-        <h2>How much you liftin?</h2>
-        <p>Spicy jalapeno bacon ipsum dolor amet biltong pork loin bresaola andouille ham hock cupim. Pig pork pastrami, rump prosciutto filet mignon tongue spare ribs venison cupim porchetta turkey capicola kielbasa. Rump beef tongue, hamburger turducken swine burgdoggen doner beef ribs flank kielbasa jerky ribeye pork loin. Sirloin leberkas ham, cow turducken jerky andouille tenderloin pork kielbasa short ribs shankle chuck picanha. Corned beef hamburger drumstick short ribs pancetta alcatra t-bone pork chop porchetta cow andouille jerky. Burgdoggen drumstick sirloin bacon ball tip, ham hock jerky jowl cupim ham. Corned beef fatback pig landjaeger jerky ball tip biltong prosciutto strip steak meatloaf t-bone venison turducken.</p>
-    </div>
-    <div class = "main">
-        <h2>The results</h2>
-        <p>Spicy jalapeno bacon ipsum dolor amet biltong pork loin bresaola andouille ham hock cupim. Pig pork pastrami, rump prosciutto filet mignon tongue spare ribs venison cupim porchetta turkey capicola kielbasa. Rump beef tongue, hamburger turducken swine burgdoggen doner beef ribs flank kielbasa jerky ribeye pork loin. Sirloin leberkas ham, cow turducken jerky andouille tenderloin pork kielbasa short ribs shankle chuck picanha. Corned beef hamburger drumstick short ribs pancetta alcatra t-bone pork chop porchetta cow andouille jerky. Burgdoggen drumstick sirloin bacon ball tip, ham hock jerky jowl cupim ham. Corned beef fatback pig landjaeger jerky ball tip biltong prosciutto strip steak meatloaf t-bone venison turducken.</p></div>
-    </div>
-    <div class = "bumper">
-        <h2>Other Options</h2>
-        <p>Ham hock salami capicola beef ribs, shankle porchetta venison filet mignon rump sirloin. Alcatra buffalo meatball, salami kielbasa tenderloin shank pork chop meatloaf flank pig pastrami jerky pancetta. Ground round bacon landjaeger leberkas venison, tongue alcatra cupim. Strip steak burgdoggen boudin, sirloin venison andouille salami cupim pastrami prosciutto chuck. Buffalo prosciutto corned beef bresaola. Drumstick corned beef doner, leberkas meatball ribeye ball tip salami frankfurter. Shankle pastrami filet mignon alcatra drumstick bresaola tongue prosciutto rump frankfurter.</p>
-    </div>
+<div class="banner">
+    <h1>Starting Strength Warm-up CalcuWeightor</h1>
+</div>
+<div class="container">
+    <div class="howtouse">
+        <h2>How do I use this?</h2>
+        <ol>
+            <li>Enter you Work Set weights in the far column</li>
+            <li>Press CalcuWeight!</li>
+            <li>Get Swole with it!</li>
+        </ol>
 
-</divA>
+    </div>
+    <div class="main">
+        <h2>The results</h2>
+        <table>
+            <tr id="header">
+                <th>Lift</th>
+                <th>Warm Up I</th>
+                <th>Warm Up II</th>
+                <th>Warm Up III</th>
+                <th>Warm Up IV</th>
+                <th>Warm Up V</th>
+                <th>Work Sets</th>
+            </tr>
+            <tr id="trSquats">
+                <td>Squats</td>
+                <td id="td11">45</td>
+                <td id="td12">45</td>
+                <td id="td13"></td>
+                <td id="td14"></td>
+                <td id="td15"></td>
+                <td><input type="text" id="sqIn" value="45"></td>
+            </tr>
+            <tr id="trOHP">
+                <td>Overhead Press</td>
+                <td id="td21">45</td>
+                <td id="td22">45</td>
+                <td id="td23"></td>
+                <td id="td24"></td>
+                <td id="td25"></td>
+                <td><input type="text" id="ohpIn" value="45"></td>
+            </tr>
+            <tr id="trDL">
+                <td>Dead Lifts</td>
+                <td id="td31">45</td>
+                <td id="td32">45</td>
+                <td id="td33"></td>
+                <td id="td34"></td>
+                <td id="td35"></td>
+                <td><input type="text" id="dlIn" value="45"></td>
+            </tr>
+            <tr id="trBP">
+                <td>Bench Press</td>
+                <td id="td41">45</td>
+                <td id="td42">45</td>
+                <td id="td43"></td>
+                <td id="td44"></td>
+                <td id="td45"></td>
+                <td><input type="text" id="bpIn" value="45"></td>
+            </tr>
+            <tr id="trPC">
+                <td>Power Cleans</td>
+                <td id="td51">45</td>
+                <td id="td52">45</td>
+                <td id="td53"></td>
+                <td id="td54"></td>
+                <td id="td55"></td>
+                <td><input type="text" id="pcIn" value="45"></td>
+            </tr>
+        </table>
+        <button onclick="calcuWeight()">CalcuWeight!!</button>
+    </div>
+    <div class="options">
+        <h2>Other Options</h2>
+        Coming soon... If I get to them :P<p>
+        The basic functionally is here so what else could you want?<p>
+        Actually now that Im looking at it, the dead lift needs work... So there's that :)
+        <!--
+        <p>Ham hock salami capicola beef ribs, shankle porchetta venison filet mignon rump sirloin. Alcatra buffalo
+            meatball, salami kielbasa tenderloin shank pork chop meatloaf flank pig pastrami jerky pancetta. Ground
+            round bacon landjaeger leberkas venison, tongue alcatra cupim. Strip steak burgdoggen boudin, sirloin
+            venison andouille salami cupim pastrami prosciutto chuck. Buffalo prosciutto corned beef bresaola. Drumstick
+            corned beef doner, leberkas meatball ribeye ball tip salami frankfurter. Shankle pastrami filet mignon
+            alcatra drumstick bresaola tongue prosciutto rump frankfurter.</p>
+            -->
+    </div>
+</div>
 </body>
 </html>
