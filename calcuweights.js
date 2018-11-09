@@ -8,12 +8,14 @@ function calcuWeight() {
     //This function rounds to the nearest for later use
     let round5 = toRound => Math.round(toRound/5)*5;
 
+    //functions
     /* The idea here is that there you want to increase the amount of weight lifted in 4 even as possible steps
     between 45lbs and and work weight
      */
-    let wwiii = workWeight => round5((workWeight-45) * .25) + 45;
-    let wwiv = workWeight => round5((workWeight-45) * .50) + 45;
-    let wwv = workWeight =>  round5((workWeight-45)*.75) + 45;
+    let bar = 45;
+    let wwiii = workWeight => round5((workWeight-bar) * .25) + bar;
+    let wwiv = workWeight => round5((workWeight-bar) * .50) + bar;
+    let wwv = workWeight =>  round5((workWeight-bar)*.75) + bar;
 
     //fill the table
     //squats
