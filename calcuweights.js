@@ -17,13 +17,35 @@ function calcuWeight() {
     let wwiv = workWeight => round5((workWeight-bar) * .50) + bar;
     let wwv = workWeight =>  round5((workWeight-bar)*.75) + bar;
 
+
     // Recursively calculate what weight sizes should be added to the bar
+    // call with ((warm up || work weight) - bar) / 2
+    let plateStack = (remainder, stack) => {
+        //base case
+        if(remainder < 0) console.error("You fucked up your recursion");
+        if(remainder === 0) return stack;
+        //Undefined was getting prepeneded to my string so i Killed it
+        if(stack === undefined) stack = "";
+        //recursive cases
+        if((remainder-45) >= 0) return plateStack((remainder-45), (stack + "45 "));
+        if((remainder-35) >= 0) return plateStack((remainder-35), (stack + "35 "));
+        if((remainder-25) >= 0) return plateStack((remainder-25), (stack + "25 "));
+        if((remainder-10) >= 0) return plateStack((remainder-10), (stack + "10 "));
+        if((remainder-5) >= 0) return plateStack((remainder-5), (stack + "5 "));
+        if((remainder-2.5) >= 0) return plateStack((remainder-2.5), (stack +"2.5 "));
+
+        console.error("The recursion missed")
+    }
 
     //fill the table
     //squats
     document.getElementById("td13").innerText = wwiii(squat.value);
+    console.log(plateStack((wwiii(squat.value)-45)/2));
     document.getElementById("td14").innerText = wwiv(squat.value);
+    console.log(plateStack((wwiv(squat.value)-45)/2));
     document.getElementById("td15").innerText = wwv(squat.value);
+    console.log(plateStack((wwv(squat.value)-45)/2));
+
     //overhead press
     document.getElementById("td23").innerText = wwiii(ohp.value);
     document.getElementById("td24").innerText = wwiv(ohp.value);
