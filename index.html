@@ -25,7 +25,7 @@
 
     </div>
     <div class="main">
-        <h2>The results</h2>
+        <h2>The CalcuWeightor</h2>
         <table>
             <tr id="header">
                 <th>Lift</th>
@@ -72,24 +72,6 @@
                 <td id="td251"></td>
                 <td id="td261"></td>
             </tr>
-            <tr id="trDL">
-                <td>Dead Lifts</td>
-                <td id="td31">Bar</td>
-                <td id="td32">Bar</td>
-                <td id="td33"></td>
-                <td id="td34"></td>
-                <td id="td35"></td>
-                <td><input type="text" id="dlIn" value="45"></td>
-            </tr>
-            <tr id="trDlStacks">
-                <td>Plates-per Side</td>
-                <td id="td311"></td>
-                <td id="td321"></td>
-                <td id="td331"></td>
-                <td id="td341"></td>
-                <td id="td351"></td>
-                <td id="td361"></td>
-            </tr>
             <tr id="trBP">
                 <td>Bench Press</td>
                 <td id="td41">Bar</td>
@@ -127,23 +109,55 @@
                 <td id="td561"></td>
             </tr>
         </table>
+        <h3>Because Dead Lifts are Special</h3>
+        <table>
+            <tr id="dlHeader">
+                <td>Lift</td>
+                <td>Warm Up I</td>
+                <td>Warm Up II</td>
+                <td>Warm Up III</td>
+                <td>Warm Up IV</td>
+                <td>Warm Up V</td>
+                <td>Work Set</td>
+            </tr>
+            <tr id="trDL">
+                <td>Dead Lifts</td>
+                <td id="td31">Bar</td>
+                <td id="td32">Bar</td>
+                <td id="td33"></td>
+                <td id="td34"></td>
+                <td id="td35"></td>
+                <td><input type="text" id="dlIn" value="45"></td>
+            </tr>
+            <tr id="trDlStacks">
+                <td>Plates-per Side</td>
+                <td id="td311"></td>
+                <td id="td321"></td>
+                <td id="td331"></td>
+                <td id="td341"></td>
+                <td id="td351"></td>
+                <td id="td361"></td>
+            </tr>
+        </table>
         <button onclick="calcuWeight()">CalcuWeight!!</button>
     </div>
     <div class="options">
         <h2>Other Options</h2>
-        Coming soon... If I get to them :P<p>
-        The basic functionally is here so what else could you want?
-        <p>
-            Actually now that I'm looking at it, the dead lift needs work... So there's that :)
-            <!--
-            <p>Ham hock salami capicola beef ribs, shankle porchetta venison filet mignon rump sirloin. Alcatra buffalo
-                meatball, salami kielbasa tenderloin shank pork chop meatloaf flank pig pastrami jerky pancetta. Ground
-                round bacon landjaeger leberkas venison, tongue alcatra cupim. Strip steak burgdoggen boudin, sirloin
-                venison andouille salami cupim pastrami prosciutto chuck. Buffalo prosciutto corned beef bresaola. Drumstick
-                corned beef doner, leberkas meatball ribeye ball tip salami frankfurter. Shankle pastrami filet mignon
-                alcatra drumstick bresaola tongue prosciutto rump frankfurter.</p>
-                -->
-    </div>
+        To Do:
+        <ul>
+            <li>Fix undefined behavior</li>
+            <li>Fix the dead lift section</li>
+            <li>Add options</li>
+            <li>Make this persistent</li>
+        </ul>
+        Future Plans:
+        <ul>
+            <li>Convert this into a PWA</li>
+            <li>Make it look nicer</li>
+            <li>Gamification!</li>
+        </ul>
+
+   </div>
 </div>
 </body>
 </html>
