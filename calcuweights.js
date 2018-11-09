@@ -1,9 +1,9 @@
 function calcuWeight() {
-    var squat = document.getElementById("sqIn");
-    var ohp = document.getElementById("ohpIn");
-    var dl = document.getElementById("dlIn");
-    var bp = document.getElementById("bpIn");
-    var pc = document.getElementById("pcIn");
+    let squat = document.getElementById("sqIn");
+    let ohp = document.getElementById("ohpIn");
+    let dl = document.getElementById("dlIn");
+    let bp = document.getElementById("bpIn");
+    let pc = document.getElementById("pcIn");
 
     //This function rounds to the nearest for later use
     let round5 = toRound => Math.round(toRound/5)*5;
@@ -12,10 +12,12 @@ function calcuWeight() {
     /* The idea here is that there you want to increase the amount of weight lifted in 4 even as possible steps
     between 45lbs and and work weight
      */
-    let bar = 45;
+    const bar = 45;
     let wwiii = workWeight => round5((workWeight-bar) * .25) + bar;
     let wwiv = workWeight => round5((workWeight-bar) * .50) + bar;
     let wwv = workWeight =>  round5((workWeight-bar)*.75) + bar;
+
+    // Recursively calculate what weight sizes should be added to the bar
 
     //fill the table
     //squats
