@@ -9,8 +9,9 @@ function calcuWeight() {
     let round5 = toRound => Math.round(toRound / 5) * 5;
 
     //functions
-    /* The idea here is that there you want to increase the amount of weight lifted in 4 even as possible steps
-    between 45lbs and and work weight
+    /* 
+        The idea here is that there you want to increase the amount of weight lifted in 4 even as possible steps
+        between 45lbs and and work weight
      */
     const bar = 45;
     let wwiii = workWeight => round5((workWeight - bar) * .25) + bar;
@@ -18,12 +19,48 @@ function calcuWeight() {
     let wwv = workWeight => round5((workWeight - bar) * .75) + bar;
 
 
-    /* Recursively calculate what weight sizes should be added to the bar
-     Almost got away with immutability... the only th
-     Call with whatever weight needs to be lifted, DO NOT PASS IN A STRING
-     TODO brake out the first call into another function to avoid errors
-     Returns a string
+    /* 
+        Recursively calculate what weight sizes should be added to the bar
+        Almost got away with immutability... 
+        Call with whatever weight needs to be lifted and an array of the available plates from highest to lowest
+        Returns a string
     */
+    let arrayBasedStack = (remainder, plates, index, stack) => {
+        if(remainder % plates[plates.length-1] !== 0) {
+            console.error(remainder + "%" + plates[plates.length-1] +" = " + remainder % plates[plates.length-1] + " That's NFG Partner")
+            alert(remainder + " can not be broken down with standard weights")
+            return "Error!"
+        }
+
+        //Undefined was getting preappended to my string so i fixed it
+        if (stack === undefined) {
+            stack = ""
+            index = 0
+            //we are only interested what on one half of the bar so..
+            console.log((remainder -45)/2)
+            return arrayBasedStack(((remainder - 45) / 2), plates, index, stack)
+        }
+
+        if (remainder === 0) return stack
+
+
+        if((remainder - plates[index]) >= 0){
+            if (stack !== "") stack += ", "
+            return arrayBasedStack((remainder - plates[index]), plates, index, (stack + plates[index]));
+        }
+        else {
+            return arrayBasedStack(remainder, plates, (index + 1), stack);
+        }
+
+    }
+
+    const regularPlates = [45, 35, 25, 10, 5, 2.5, 1.25]
+
+    console.log(arrayBasedStack(wwiii(squat.value), regularPlates))
+    console.log(arrayBasedStack(wwiv(squat.value), regularPlates))
+    console.log(arrayBasedStack(wwv(squat.value), regularPlates))
+    console.log(arrayBasedStack(squat.value, regularPlates))
+
     let plateStack = (remainder, stack) => {
         //initialize the recursion
         //Undefined was getting preappended to my string so i fixed it
@@ -47,7 +84,6 @@ function calcuWeight() {
 
         console.error("plateStack's recursive cases missed, potentially < 0 ")
     }
-
     //fill the table
     //squats
     document.getElementById("td13").innerText = wwiii(squat.value);
@@ -90,5 +126,4 @@ function calcuWeight() {
     document.getElementById("td541").innerText = plateStack(wwiv(pc.value));
     document.getElementById("td551").innerText = plateStack(wwv(pc.value));
     document.getElementById("td561").innerText = plateStack((pc.value));
-
 }
