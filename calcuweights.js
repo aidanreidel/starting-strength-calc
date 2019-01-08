@@ -21,6 +21,7 @@ function calcuWeight() {
     let dliii = workWeight => round5((workWeight - 95) * .25 ) + 95;
     let dliv = workWeight => round5((workWeight - 95) * .50 ) + 95; 
     let dlv = workWeight => round5((workWeight - 95) * .75 ) + 95;
+
     /* 
         Recursively calculate what weight sizes should be added to the bar
         Almost got away with immutability... 
@@ -28,9 +29,6 @@ function calcuWeight() {
         Returns a string
     */ 
     
-    //TODO: Figure out why deadlifts are still broken 
-    // I think it might have to do with the way I call the helper function, It will need a special case 
-    // I need 4 even steps from 95 pounds to the work weight.
     let plateStack = (remainder, plates) => {
         if (remainder < 0){
             alert("You must enter in at least 45")
@@ -90,9 +88,9 @@ function calcuWeight() {
     document.getElementById("td561").innerText = plateStack((pc.value), regularPlates);
     
     //dead lift
-    document.getElementById("td33").innerText = wwiii(dl.value);
-    document.getElementById("td34").innerText = wwiv(dl.value);
-    document.getElementById("td35").innerText = wwv(dl.value);
+    document.getElementById("td33").innerText = dliii(dl.value);
+    document.getElementById("td34").innerText = dliv(dl.value);
+    document.getElementById("td35").innerText = dlv(dl.value);
     document.getElementById("td331").innerText = plateStack(dliii(dl.value), olympicPlates);
     document.getElementById("td341").innerText = plateStack(dliv(dl.value), olympicPlates);
     document.getElementById("td351").innerText = plateStack(dlv(dl.value), olympicPlates);
