@@ -13,45 +13,43 @@ function calcuWeight() {
         The idea here is that there you want to increase the amount of weight lifted in 4 even as possible steps
         between 45lbs and and work weight
      */
+
     const bar = 45;
     let wwiii = workWeight => round5((workWeight - bar) * .25) + bar;
     let wwiv = workWeight => round5((workWeight - bar) * .50) + bar;
     let wwv = workWeight => round5((workWeight - bar) * .75) + bar;
 
-
+    let dliii = workWeight => round5((workWeight - 95) * .25 ) + bar;
+    let dliv = workWeight => round5((workWeight - 95) * .50 ) + bar; 
+    let dlv = workWeight => round5((workWeight - 95) * .75 ) + bar;
     /* 
         Recursively calculate what weight sizes should be added to the bar
         Almost got away with immutability... 
         Call with whatever weight needs to be lifted and an array of the available plates from highest to lowest
         Returns a string
-    */
-    let plateStack = (remainder, plates, index, stack) => {
-        if(remainder % plates[plates.length-1] !== 0) {
-            console.error(remainder + "%" + plates[plates.length-1] +" = " + remainder % plates[plates.length-1] + " That's NFG Partner")
-            alert(remainder + " can not be broken down with standard weights")
-            return "Error!"
+    */ 
+    
+    let plateStack = (remainder, plates) => {
+        if (remainder < 0){
+            alert("You must enter in at least 45")
+            return
         }
-
-        //Undefined was getting preappended to my string so i fixed it
-        if (stack === undefined) {
-            stack = ""
-            index = 0
-            //we are only interested what on one half of the bar so..
-            console.log((remainder - bar)/2)
-            return plateStack(((remainder - 45) / 2), plates, index, stack)
+        if(remainder % plates[plates.length-1] !== 0){
+            alert(plates[plates.length-1] + " does not divide " + remainder)
+            return
         }
-
+        return plateStackHelper(((remainder - 45) / 2), plates, 0, "")
+    }
+    let plateStackHelper = (remainder, plates, index, stack) => {
         if (remainder === 0) return stack
-
 
         if((remainder - plates[index]) >= 0){
             if (stack !== "") stack += ", "
-            return plateStack((remainder - plates[index]), plates, index, (stack + plates[index]));
+            return plateStackHelper((remainder - plates[index]), plates, index, (stack + plates[index]));
         }
         else {
-            return plateStack(remainder, plates, (index + 1), stack);
+            return plateStackHelper(remainder, plates, (index + 1), stack);
         }
-
     }
 
     const regularPlates = [45, 35, 25, 10, 5, 2.5, 1.25]
@@ -93,8 +91,8 @@ function calcuWeight() {
     document.getElementById("td33").innerText = wwiii(dl.value);
     document.getElementById("td34").innerText = wwiv(dl.value);
     document.getElementById("td35").innerText = wwv(dl.value);
-    document.getElementById("td331").innerText = plateStack(wwiii(dl.value), olympicPlates);
-    document.getElementById("td341").innerText = plateStack(wwiv(dl.value), olympicPlates);
-    document.getElementById("td351").innerText = plateStack(wwv(dl.value), olympicPlates);
+    document.getElementById("td331").innerText = plateStack(dliii(dl.value), olympicPlates);
+    document.getElementById("td341").innerText = plateStack(dliv(dl.value), olympicPlates);
+    document.getElementById("td351").innerText = plateStack(dlv(dl.value), olympicPlates);
     document.getElementById("td361").innerText = plateStack((dl.value), olympicPlates);
 }
