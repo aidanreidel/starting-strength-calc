@@ -5,7 +5,6 @@ function calcuWeight() {
     let bp = document.getElementById("bpIn");
     let pc = document.getElementById("pcIn");
 
-    //This function rounds to the nearest for later use
     let round5 = toRound => Math.round(toRound / 5) * 5;
 
     //functions
@@ -19,9 +18,9 @@ function calcuWeight() {
     let wwiv = workWeight => round5((workWeight - bar) * .50) + bar;
     let wwv = workWeight => round5((workWeight - bar) * .75) + bar;
 
-    let dliii = workWeight => round5((workWeight - 95) * .25 ) + bar;
-    let dliv = workWeight => round5((workWeight - 95) * .50 ) + bar; 
-    let dlv = workWeight => round5((workWeight - 95) * .75 ) + bar;
+    let dliii = workWeight => round5((workWeight - 95) * .25 ) + 95;
+    let dliv = workWeight => round5((workWeight - 95) * .50 ) + 95; 
+    let dlv = workWeight => round5((workWeight - 95) * .75 ) + 95;
     /* 
         Recursively calculate what weight sizes should be added to the bar
         Almost got away with immutability... 
@@ -29,6 +28,9 @@ function calcuWeight() {
         Returns a string
     */ 
     
+    //TODO: Figure out why deadlifts are still broken 
+    // I think it might have to do with the way I call the helper function, It will need a special case 
+    // I need 4 even steps from 95 pounds to the work weight.
     let plateStack = (remainder, plates) => {
         if (remainder < 0){
             alert("You must enter in at least 45")
