@@ -25,7 +25,7 @@ function calcuWeight() {
         Call with whatever weight needs to be lifted and an array of the available plates from highest to lowest
         Returns a string
     */
-    let arrayBasedStack = (remainder, plates, index, stack) => {
+    let plateStack = (remainder, plates, index, stack) => {
         if(remainder % plates[plates.length-1] !== 0) {
             console.error(remainder + "%" + plates[plates.length-1] +" = " + remainder % plates[plates.length-1] + " That's NFG Partner")
             alert(remainder + " can not be broken down with standard weights")
@@ -37,8 +37,8 @@ function calcuWeight() {
             stack = ""
             index = 0
             //we are only interested what on one half of the bar so..
-            console.log((remainder -45)/2)
-            return arrayBasedStack(((remainder - 45) / 2), plates, index, stack)
+            console.log((remainder - bar)/2)
+            return plateStack(((remainder - 45) / 2), plates, index, stack)
         }
 
         if (remainder === 0) return stack
@@ -46,84 +46,55 @@ function calcuWeight() {
 
         if((remainder - plates[index]) >= 0){
             if (stack !== "") stack += ", "
-            return arrayBasedStack((remainder - plates[index]), plates, index, (stack + plates[index]));
+            return plateStack((remainder - plates[index]), plates, index, (stack + plates[index]));
         }
         else {
-            return arrayBasedStack(remainder, plates, (index + 1), stack);
+            return plateStack(remainder, plates, (index + 1), stack);
         }
 
     }
 
     const regularPlates = [45, 35, 25, 10, 5, 2.5, 1.25]
-
-    console.log(arrayBasedStack(wwiii(squat.value), regularPlates))
-    console.log(arrayBasedStack(wwiv(squat.value), regularPlates))
-    console.log(arrayBasedStack(wwv(squat.value), regularPlates))
-    console.log(arrayBasedStack(squat.value, regularPlates))
-
-    let plateStack = (remainder, stack) => {
-        //initialize the recursion
-        //Undefined was getting preappended to my string so i fixed it
-        if (stack === undefined) {
-            stack = "";
-            //we are only interested what on one half of the bar so..
-            return plateStack(((remainder - 45) / 2), stack);
-        }
-
-        //base case
-        if (remainder === 0) return stack;
-        //helps readability
-        if (stack !== "") stack += ", ";
-        //recursive cases
-        if ((remainder - 45) >= 0) return plateStack((remainder - 45), (stack + "45"));
-        if ((remainder - 35) >= 0) return plateStack((remainder - 35), (stack + "35"));
-        if ((remainder - 25) >= 0) return plateStack((remainder - 25), (stack + "25"));
-        if ((remainder - 10) >= 0) return plateStack((remainder - 10), (stack + "10"));
-        if ((remainder - 5) >= 0) return plateStack((remainder - 5), (stack + "5"));
-        if ((remainder - 2.5) >= 0) return plateStack((remainder - 2.5), (stack + "2.5"));
-
-        console.error("plateStack's recursive cases missed, potentially < 0 ")
-    }
-    //fill the table
+    const olympicPlates = [55, 45, 35, 25, 10, 5, 2.5] 
     //squats
     document.getElementById("td13").innerText = wwiii(squat.value);
     document.getElementById("td14").innerText = wwiv(squat.value);
     document.getElementById("td15").innerText = wwv(squat.value);
-    document.getElementById("td131").innerText = plateStack(wwiii(squat.value));
-    document.getElementById("td141").innerText = plateStack(wwiv(squat.value));
-    document.getElementById("td151").innerText = plateStack(wwv(squat.value));
-    document.getElementById("td161").innerText = plateStack((squat.value));
-
+    document.getElementById("td131").innerText = plateStack(wwiii(squat.value), regularPlates);
+    document.getElementById("td141").innerText = plateStack(wwiv(squat.value), regularPlates);
+    document.getElementById("td151").innerText = plateStack(wwv(squat.value), regularPlates);
+    document.getElementById("td161").innerText = plateStack((squat.value), regularPlates);
     //overhead press
     document.getElementById("td23").innerText = wwiii(ohp.value);
     document.getElementById("td24").innerText = wwiv(ohp.value);
     document.getElementById("td25").innerText = wwv(ohp.value);
-    document.getElementById("td231").innerText = plateStack(wwiii(ohp.value));
-    document.getElementById("td241").innerText = plateStack(wwiv(ohp.value));
-    document.getElementById("td251").innerText = plateStack(wwv(ohp.value));
-    document.getElementById("td261").innerText = plateStack((ohp.value));
-    //dead lift
-    document.getElementById("td33").innerText = wwiii(dl.value);
-    document.getElementById("td34").innerText = wwiv(dl.value);
-    document.getElementById("td35").innerText = wwv(dl.value);
-    document.getElementById("td331").innerText = plateStack(wwiii(dl.value));
-    document.getElementById("td341").innerText = plateStack(wwiv(dl.value));
-    document.getElementById("td351").innerText = plateStack(wwv(dl.value));
-    document.getElementById("td361").innerText = plateStack((dl.value));
+    document.getElementById("td231").innerText = plateStack(wwiii(ohp.value), regularPlates);
+    document.getElementById("td241").innerText = plateStack(wwiv(ohp.value), regularPlates);
+    document.getElementById("td251").innerText = plateStack(wwv(ohp.value), regularPlates);
+    document.getElementById("td261").innerText = plateStack((ohp.value), regularPlates);
     //bench press
     document.getElementById("td43").innerText = wwiii(bp.value);
     document.getElementById("td44").innerText = wwiv(bp.value);
     document.getElementById("td45").innerText = wwv(bp.value);
-    document.getElementById("td431").innerText = plateStack(wwiii(bp.value));
-    document.getElementById("td441").innerText = plateStack(wwiv(bp.value));
-    document.getElementById("td451").innerText = plateStack(wwv(bp.value));
-    document.getElementById("td461").innerText = plateStack((bp.value));
+    document.getElementById("td431").innerText = plateStack(wwiii(bp.value), regularPlates);
+    document.getElementById("td441").innerText = plateStack(wwiv(bp.value), regularPlates);
+    document.getElementById("td451").innerText = plateStack(wwv(bp.value), regularPlates);
+    document.getElementById("td461").innerText = plateStack((bp.value), regularPlates);
     //power cleans
     document.getElementById("td53").innerText = wwiii(pc.value);
     document.getElementById("td54").innerText = wwiv(pc.value);
     document.getElementById("td55").innerText = wwv(pc.value);
-    document.getElementById("td531").innerText = plateStack(wwiii(pc.value));
-    document.getElementById("td541").innerText = plateStack(wwiv(pc.value));
-    document.getElementById("td551").innerText = plateStack(wwv(pc.value));
-    document.getElementById("td561").innerText = plateStack((pc.value));
+    document.getElementById("td531").innerText = plateStack(wwiii(pc.value), regularPlates);
+    document.getElementById("td541").innerText = plateStack(wwiv(pc.value), regularPlates);
+    document.getElementById("td551").innerText = plateStack(wwv(pc.value), regularPlates);
+    document.getElementById("td561").innerText = plateStack((pc.value), regularPlates);
+    
+    //dead lift
+    document.getElementById("td33").innerText = wwiii(dl.value);
+    document.getElementById("td34").innerText = wwiv(dl.value);
+    document.getElementById("td35").innerText = wwv(dl.value);
+    document.getElementById("td331").innerText = plateStack(wwiii(dl.value), olympicPlates);
+    document.getElementById("td341").innerText = plateStack(wwiv(dl.value), olympicPlates);
+    document.getElementById("td351").innerText = plateStack(wwv(dl.value), olympicPlates);
+    document.getElementById("td361").innerText = plateStack((dl.value), olympicPlates);
 }
